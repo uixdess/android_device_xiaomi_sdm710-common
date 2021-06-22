@@ -228,6 +228,10 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     libavservices_minijail.vendor
 
+# Init
+PRODUCT_PACKAGES += \
+    libinit_sdm710
+
 # Input
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/sdm710-tavil-snd-card_Button_Jack.kl:system/usr/keylayout/sdm710-tavil-snd-card_Button_Jack.kl
