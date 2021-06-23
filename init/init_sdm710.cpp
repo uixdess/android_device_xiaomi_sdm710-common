@@ -67,6 +67,12 @@ void load_pyxischina()
 	property_override("ro.build.description", "");
 }
 
+void load_vela()
+{
+	property_override_dual("ro.product.model", "ro.product.vendor.model", "MI CC 9 Meitu Edition");
+	property_override("ro.build.description", "pyxis-user 10 QKQ1.190828.002 V11.0.3.0.QFCCNXM release-keys");
+}
+
 void vendor_load_properties()
 {
 	std::string region = android::base::GetProperty("ro.boot.hwc", "");
@@ -83,4 +89,18 @@ void vendor_load_properties()
 	{
 		LOG(ERROR) << __func__ << ": unexcepted region!";
 	}
+
+    const char* path = "/proc/meminfo";
+    std::ifstream infile(path);
+    std::string line;
+    while (std::getline(infile, line))
+    {
+        if (line.find("MemTotal:") != string::npos)
+        {
+            if (line.substr(17, 7) > "7000000") {
+                load_properties("vela");
+            }
+        }
+    }
+    infile.close();
 }
