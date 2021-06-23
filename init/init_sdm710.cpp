@@ -49,5 +49,38 @@ void property_override(char const prop[], char const value[]) {
     __system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
-void vendor_load_properties() {
+void property_override_dual(char const system_prop[], char const vendor_prop[], char const value[])
+{
+	property_override(system_prop, value);
+	property_override(vendor_prop, value);
+}
+
+void load_pyxisglobal()
+{
+	property_override_dual("ro.product.model", "ro.product.vendor.model", "Mi 9 Lite");
+	property_override("ro.build.description", "pyxis-user 10 QKQ1.190828.002 V11.0.1.0.QFCMIXM release-keys");
+}
+
+void load_pyxischina()
+{
+	property_override_dual("ro.product.model", "ro.product.vendor.model", "MI CC 9");
+	property_override("ro.build.description", "");
+}
+
+void vendor_load_properties()
+{
+	std::string region = android::base::GetProperty("ro.boot.hwc", "");
+
+	if (region.find("CN") != std::string::npos)
+	{
+		load_pyxis();
+	}
+	else if (region.find("GLOBAL") != std::string::npos)
+	{
+		load_pyxisglobalchina();
+	}
+	else
+	{
+		LOG(ERROR) << __func__ << ": unexcepted region!";
+	}
 }
