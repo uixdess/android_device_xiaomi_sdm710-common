@@ -107,10 +107,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.0-impl:32 \
     audio.bluetooth.default \
+    com.dsi.ant@1.0.vendor:64 \
     libbthost_if \
-    vendor.qti.hardware.bluetooth_audio@2.0.vendor \
-    vendor.qti.hardware.btconfigstore@1.0.vendor \
-    vendor.qti.hardware.btconfigstore@2.0.vendor
+    vendor.qti.hardware.bluetooth_audio@2.0.vendor:32 \
+    vendor.qti.hardware.btconfigstore@1.0.vendor:64 \
+    vendor.qti.hardware.btconfigstore@2.0.vendor:64
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -256,6 +257,7 @@ PRODUCT_PACKAGES += \
 # Media
 PRODUCT_PACKAGES += \
     libavservices_minijail \
+    libavservices_minijail.vendor \
     libc2dcolorconvert \
     libOmxAacEnc \
     libOmxAmrEnc \
